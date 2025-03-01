@@ -1,100 +1,104 @@
-# Welcome to React Router!
+# TopRacket (탑라켓)
 
-A modern, production-ready template for building full-stack React applications using React Router.
+스쿼시 센터 코트 관리 및 커뮤니티 플랫폼
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+## 프로젝트 개요
 
-## Features
+TopRacket은 스쿼시 센터 코트 현황을 실시간으로 관리하고, 플레이어 랭킹, 뱃지 챌린지, 그룹 관리, 커뮤니티 기능을 제공하는 종합 스쿼시 플랫폼입니다. 이 애플리케이션은 스쿼시 센터와 플레이어들을 연결하여 더 나은 스쿼시 경험을 제공합니다.
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+## 기능
 
-## Getting Started
+### 실시간 코트 현황
+- 각 센터별 코트 현황 실시간 확인
+- 현재 진행 중인 매치 정보 확인
+- 참가자 수 확인
 
-### Installation
+### 랭킹보드
+- 전체 랭킹 포인트 확인
+- 센터별 랭킹 확인
+- 그룹별 랭킹 확인
 
-Install the dependencies:
+### 뱃지 챌린지
+- 다양한 뱃지 유형: 이벤트, 시즌 탑라켓, 커스텀 뱃지
+- 뱃지 획득 조건 확인
+- 챌린지 신청 기능
+
+### 그룹 관리
+- 그룹 생성 및 관리
+- 그룹별 활동 확인
+- 그룹 멤버 관리
+
+### 커뮤니티 기능
+- 게시글 작성 및 확인
+- 센터별, 정렬별 게시글 필터링
+- 좋아요, 조회수 기능
+
+## 기술 아키텍처
+
+### 프론트엔드
+- **React**: 사용자 인터페이스 구축
+- **TypeScript**: 타입 안정성 확보
+- **React Router**: 클라이언트 사이드 라우팅
+- **Tailwind CSS**: 스타일링
+- **Shadcn UI**: UI 컴포넌트 라이브러리
+- **Lucide React**: 아이콘 라이브러리
+
+### 주요 프로젝트 구조
+- `app/`: 메인 애플리케이션 코드
+  - `common/`: 공통 컴포넌트 및 페이지
+  - `features/`: 기능별 모듈 (센터, 랭킹보드, 뱃지, 그룹 등)
+  - `lib/`: 유틸리티 함수
+  - `routes.ts`: 라우트 정의
+
+## 설치 방법
 
 ```bash
+# 저장소 클론
+git clone [repository-url]
+
+# 디렉토리 이동
+cd top-racket
+
+# 의존성 설치
 npm install
 ```
 
-### Development
+## 사용 방법
 
-Start the development server with HMR:
-
+### 개발 서버 실행
 ```bash
 npm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
-
-## Building for Production
-
-Create a production build:
-
+### 프로덕션 빌드
 ```bash
 npm run build
 ```
 
-## Deployment
-
-### Docker Deployment
-
-This template includes three Dockerfiles optimized for different package managers:
-
-- `Dockerfile` - for npm
-- `Dockerfile.pnpm` - for pnpm
-- `Dockerfile.bun` - for bun
-
-To build and run using Docker:
-
+### 프로덕션 서버 실행
 ```bash
-# For npm
-docker build -t my-app .
-
-# For pnpm
-docker build -f Dockerfile.pnpm -t my-app .
-
-# For bun
-docker build -f Dockerfile.bun -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
+npm run start
 ```
 
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
+### 타입 체크
+```bash
+npm run typecheck
 ```
 
-## Styling
+## 코드 스타일 가이드
+- TypeScript 사용 (인터페이스 선호)
+- 함수형 컴포넌트 사용
+- 클래스 및 열거형 대신 맵 사용
+- 서술적인 변수명 사용 (isLoading, hasError 등)
+- 디렉토리명은 소문자와 대시 사용 (components/auth-wizard)
+- 컴포넌트는 명명된 내보내기 사용
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+## UI 컴포넌트 가이드
+- Shadcn UI 컴포넌트 사용 (Radix UI에서 직접 가져오지 않음)
+- Tailwind로 스타일링 (클래스 병합에 `cn()` 유틸리티 사용)
+- 선언적 JSX 사용
 
----
-
-Built with ❤️ using React Router.
+## React Router 가이드
+- "react-router"에서 가져오기 ("remix-run"에서 직접 가져오지 않음)
+- 컴포넌트는 Router.ComponentProps를 통해 props 수신
+- 로더/액션에서는 일반 객체 반환
